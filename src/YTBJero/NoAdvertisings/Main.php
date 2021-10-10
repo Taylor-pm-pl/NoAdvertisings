@@ -102,6 +102,10 @@ class Main extends PluginBase implements Listener{
     public function onCommand(CommandSender $sender, Command $command, String $label, Array $args): bool 
     {
         if($command->getName() == "noadvertisings"){
+            if(!$sender->hasPermission("noadvertisings.blocked")){
+                $sender->sendMessage("You don't have permission to use this command.");
+                return false;
+            }
                     if (isset($args[0])) {
                         switch ($args[0]) {
                             case "add":
