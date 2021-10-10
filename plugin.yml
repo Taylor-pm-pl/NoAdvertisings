@@ -8,3 +8,9 @@ commands:
   noadvertisings:
     aliases: ['noads', 'na']
     description: "NoAdvertisings Control"
+    usage: /noadvertisings
+    permission: noadvertisings.blocked
+permissions:
+  noadvertisings.blocked:
+    description: "NoAdvertisings Control"
+    default: op
