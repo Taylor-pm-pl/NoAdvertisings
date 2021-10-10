@@ -1,0 +1,30 @@
+# Main config for NoAdvertisings
+# Message when players advertise
+Message: "Please don't ads."
+# Messages when adding domain
+Domain-exists: "That domain already exist!."
+Domain-added-successfully: "Successfully added {domain} into config."
+# Messages when removing domain
+Domain-not-exists: "That domain not exist!."
+Domain-removed-successfully: "Successfully removed {domain} from config."
+# The domains that allowed to use
+allowed.domain:
+  - "youripserver.net"
+  - "yourip.net"
+# Blocked domain names
+domain:
+  - ".net"
+  - ".com"
+  - ".tk"
+  - ".ddns.net"
+# Lines that will change if player advertise on sign
+lines:
+  - '============='
+  - 'No Advertising!'
+  - '============='
+  - ''
+# The command that will protected from advertising
+blocked.cmd:
+  - "/me"
+  - "/tell"
+  - "/w"

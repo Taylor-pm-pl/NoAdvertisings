@@ -1,0 +1,10 @@
+name: NoAdvertisings
+version: 0.0.1
+api: 3.22.0
+main: YTBJero\NoAdvertisings\Main
+author: YTBJero 
+
+commands:
+  noadvertisings:
+    aliases: ['noads', 'na']
+    description: "NoAdvertisings Control"
