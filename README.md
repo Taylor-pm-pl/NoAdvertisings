@@ -1,3 +1,4 @@
+[![](https://poggit.pmmp.io/shield.state/NoAdvertisings)]
 <div align="center">
 <h1>NoAdvertisings| v0.0.1<h1>
 <p>Block ads for other servers.</p>
