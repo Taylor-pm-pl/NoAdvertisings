@@ -1,0 +1,9 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/JeroGamingYT/NoAdvertisings
+build-by-default: true
+branches:
+- master
+projects:
+  NoAdvertisings:
+    path: ""
+    icon: icon.png
+...
