@@ -1,16 +1,20 @@
+---
 name: NoAdvertisings
-version: 0.0.1
-api: 3.22.0
+version: 0.0.2
+api:
+- 3.0.0
 main: YTBJero\NoAdvertisings\Main
-author: YTBJero 
-
+author: YTBJero
 commands:
   noadvertisings:
-    aliases: ['noads', 'na']
-    description: "NoAdvertisings Control"
+    aliases:
+    - noads
+    - na
+    description: NoAdvertisings Control
     usage: /noadvertisings
     permission: noadvertisings.blocked
 permissions:
   noadvertisings.blocked:
-    description: "NoAdvertisings Control"
+    description: NoAdvertisings Control
     default: op
+...

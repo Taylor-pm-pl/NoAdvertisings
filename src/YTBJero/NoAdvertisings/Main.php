@@ -12,14 +12,20 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\command\{Command, CommandSender};
-
+use YTBJero\NoAdvertisings\libs\JackMD\UpdateNotifier\UpdateNotifier;
 class Main extends PluginBase implements Listener{
+
+    public function onLoad() 
+    {
+        UpdateNotifier::checkUpdate($this->getDescription()->getName(), $this->getDescription()->getVersion());
+    }
 
     public function onEnable(): void
     {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
     }
+
 
     /**
      * @param  PlayerChatEvent $event
@@ -38,10 +44,10 @@ class Main extends PluginBase implements Listener{
         foreach($domain as $d){
             if((stripos($msg, $d) !== false) || (preg_match("([a-zA-Z0-9]+ *+[(\.|,)]+ *+[^\s]{2,}|\.[a-zA-Z0-9]+\.[^\s]{2,})", $msg))){
                         $event->setCancelled(true);
+     $player->sendMessage($this->getConfig()->get("Message"));
                        
         }
     }
-     $player->sendMessage($this->getConfig()->get("Message"));
     }
 
     /**
