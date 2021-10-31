@@ -11,6 +11,7 @@ use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\plugin\PluginBase;
 use pocketmine\Player;
 use pocketmine\Server;
+use pocketmine\utils\Config;
 use pocketmine\command\{Command, CommandSender};
 use YTBJero\NoAdvertisings\libs\JackMD\UpdateNotifier\UpdateNotifier;
 class Main extends PluginBase implements Listener{
@@ -24,6 +25,7 @@ class Main extends PluginBase implements Listener{
     {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
+        $this->history = new Config($this->getDataFolder()."history.yml", Config::YAML);
     }
 
 
@@ -33,6 +35,7 @@ class Main extends PluginBase implements Listener{
     public function onChat(PlayerChatEvent $event) :void
     {
         $player = $event->getPlayer();
+        $name = $player->getName();
         $msg = $event->getMessage();
         $domain = $this->getDomain();
         $allowed = $this->getAllowedDomain();
@@ -45,6 +48,9 @@ class Main extends PluginBase implements Listener{
             if((stripos($msg, $d) !== false) || (preg_match("([a-zA-Z0-9]+ *+[(\.|,)]+ *+[^\s]{2,}|\.[a-zA-Z0-9]+\.[^\s]{2,})", $msg))){
                         $event->setCancelled(true);
      $player->sendMessage($this->getConfig()->get("Message"));
+     $time = date("D d/m/Y H:i:s(A)");
+                    $this->history->set($time . ' : ' . $name, $msg);
+                    $this->history->save();
                        
         }
     }
@@ -58,6 +64,7 @@ class Main extends PluginBase implements Listener{
             $lines = $event->getLines();
             $player = $event->getPlayer();
             $sign = $this->getSignLines();
+            $name = $player->getName();
             foreach($lines as $line){
                 foreach($this->getAllowedDomain() as $a){
                     if(stripos($line, $a) !== false){
@@ -69,6 +76,9 @@ class Main extends PluginBase implements Listener{
                         for ($i = 0; $i <= 3; $i++) {
                             $event->setLine($i, $sign[$i]);
                 $player->sendMessage($this->getConfig()->get("Message"));
+                $time = date("D d/m/Y H:i:s(A)");
+                    $this->history->set($time . ' : ' . $name, $line);
+                    $this->history->save();
                         }
                     }
                 }
@@ -83,6 +93,7 @@ class Main extends PluginBase implements Listener{
         $cmd = array_shift($msg);
         $player = $event->getPlayer();
         $m = implode(' ', $msg);
+        $name = $player->getName();
         foreach ($this->getAllowedDomain() as $a) {
             if (stripos($m, $a) !== false) {
                 return;
@@ -93,6 +104,9 @@ class Main extends PluginBase implements Listener{
                 if (stripos($m, $d) !== false) {
                     $event->setCancelled(true);
                     $player->sendMessage($this->getConfig()->get("Message"));
+                    $time = date("D d/m/Y H:i:s(A)");
+                    $this->history->set($time . ' : ' . $name, $m);
+                    $this->history->save();
                 }
             }
         }

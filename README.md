@@ -1,6 +1,5 @@
-[![](https://poggit.pmmp.io/shield.state/NoAdvertisings)]
 <div align="center">
-<h1>NoAdvertisings| v0.0.1<h1>
+<h1>NoAdvertisings| v0.0.2<h1>
 <p>Block ads for other servers.</p>
 </div>
 
@@ -56,9 +55,17 @@ blocked.cmd:
   - "/w"
 ...
  ```
+## History
+ ```
+---
+#This is where the system will save the ads player history.
+'Wed 18/08/2021 03:57:24(AM) : Console': example.net.
+'Wed 18/08/2021 03:57:31(AM) : Console': play.example.org
+...
+ ```
 ## Project Infomation
 
 | Plugin Version | Pocketmine API | PHP Version | Plugin Status |
 |---|---|---|---|
-| 0.0.1 | 3.x.x | 7.4 | Completed |
+| 0.0.3 | 3.x.x | 7.4 | Completed |
  
