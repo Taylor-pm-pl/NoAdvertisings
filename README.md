@@ -1,5 +1,5 @@
 <div align="center">
-<h1>NoAdvertisings| v0.0.2<h1>
+<h1>NoAdvertisings| v0.0.3<h1>
 <p>Block ads for other servers.</p>
 </div>
 
