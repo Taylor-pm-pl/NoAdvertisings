@@ -15,7 +15,9 @@ use pocketmine\utils\Config;
 use pocketmine\command\{Command, CommandSender};
 use YTBJero\NoAdvertisings\libs\JackMD\UpdateNotifier\UpdateNotifier;
 class Main extends PluginBase implements Listener{
-
+    
+    public $history;
+    
     public function onLoad() 
     {
         UpdateNotifier::checkUpdate($this->getDescription()->getName(), $this->getDescription()->getVersion());
