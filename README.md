@@ -2,9 +2,6 @@
 <h1>NoAdvertisings| v0.0.3<h1>
 <p>Block ads for other servers.</p>
 </div>
- ---
-[![](https://poggit.pmmp.io/shield.state/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings) [![](https://poggit.pmmp.io/shield.api/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings) [![](https://poggit.pmmp.io/shield.dl.total/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings) [![](https://poggit.pmmp.io/shield.dl/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings)
-  
 ## Features
 - Block server ads.
 - Easy to setup.
