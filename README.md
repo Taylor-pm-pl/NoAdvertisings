@@ -2,6 +2,7 @@
 <h1>NoAdvertisings| v0.0.3<h1>
 <p>Block ads for other servers.</p>
 </div>
+  
 ## Features
 - Block server ads.
 - Easy to setup.
