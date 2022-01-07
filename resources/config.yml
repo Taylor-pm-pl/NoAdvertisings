@@ -1,4 +1,8 @@
 # Main config for NoAdvertisings
+# Don't Change It!
+config-version: 0.0.4
+# Set it to true if you want it to automatically notify the console when a new update is available.
+Update-notice: true
 # Message when players advertise
 Message: "Please don't ads."
 # Messages when adding domain
@@ -20,8 +24,7 @@ domain:
 # Lines that will change if player advertise on sign
 lines:
   - '============='
-  - 'No Advertising!'
-  - '============='
+  - 'No AdvertisingCCC!'
   - ''
 # The command that will protected from advertising
 blocked.cmd:

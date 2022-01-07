@@ -9,25 +9,49 @@ use pocketmine\event\player\PlayerChatEvent;
 use pocketmine\event\block\SignChangeEvent;
 use pocketmine\event\player\PlayerCommandPreprocessEvent;
 use pocketmine\plugin\PluginBase;
-use pocketmine\Player;
+use pocketmine\player\Player;
 use pocketmine\Server;
 use pocketmine\utils\Config;
 use pocketmine\command\{Command, CommandSender};
-use YTBJero\NoAdvertisings\libs\JackMD\UpdateNotifier\UpdateNotifier;
+use pocketmine\block\utils\SignText;
+use pocketmine\block\WallSign;
 class Main extends PluginBase implements Listener{
+
+    public $configversion = "0.0.4";
     
     public $history;
-    
-    public function onLoad() 
-    {
-        UpdateNotifier::checkUpdate($this->getDescription()->getName(), $this->getDescription()->getVersion());
-    }
 
     public function onEnable(): void
     {
         $this->getServer()->getPluginManager()->registerEvents($this, $this);
         $this->saveDefaultConfig();
         $this->history = new Config($this->getDataFolder()."history.yml", Config::YAML);
+        if($this->getConfig()->get("Update-notice")){
+            $this->checkUpdate();
+        }
+        $this->checkConfigUpdate();
+    }
+
+    public function checkUpdate(bool $isRetry = false): void 
+    {
+        $this->getServer()->getAsyncPool()->submitTask(new CheckUpdateTask($this->getDescription()->getName(), $this->getDescription()->getVersion()));
+    }
+
+    private function checkConfigUpdate(): void{
+        $updateconfig = false;
+
+        if(!$this->getConfig()->exists("config-version")){
+            $updateconfig = true;
+        }
+
+        if($this->getConfig()->get("config-version") !== $this->configversion){
+            $updateconfig = true;
+        }
+
+        if($updateconfig){
+            @unlink($this->getDataFolder()."config.yml");
+            $this->saveDefaultConfig();
+        }
     }
 
 
@@ -48,14 +72,14 @@ class Main extends PluginBase implements Listener{
         }
         foreach($domain as $d){
             if((stripos($msg, $d) !== false) || (preg_match("([a-zA-Z0-9]+ *+[(\.|,)]+ *+[^\s]{2,}|\.[a-zA-Z0-9]+\.[^\s]{2,})", $msg))){
-                        $event->setCancelled(true);
+                        $event->cancel();
      $player->sendMessage($this->getConfig()->get("Message"));
      $time = date("D d/m/Y H:i:s(A)");
                     $this->history->set($time . ' : ' . $name, $msg);
                     $this->history->save();
                        
+            }
         }
-    }
     }
 
     /**
@@ -63,10 +87,12 @@ class Main extends PluginBase implements Listener{
      */
      public function onSign(SignChangeEvent $event): void 
      {
-            $lines = $event->getLines();
             $player = $event->getPlayer();
-            $sign = $this->getSignLines();
             $name = $player->getName();
+			$sign = $this->getSignLines();
+			$oldText = $event->getOldText();
+			$newText = $event->getNewText();
+            $lines = $event->getSign()->getText()->getLines();
             foreach($lines as $line){
                 foreach($this->getAllowedDomain() as $a){
                     if(stripos($line, $a) !== false){
@@ -75,9 +101,15 @@ class Main extends PluginBase implements Listener{
                 }
                 foreach($this->getDomain() as $d){
                     if(stripos($line, $d) !== false) {
-                        for ($i = 0; $i <= 3; $i++) {
-                            $event->setLine($i, $sign[$i]);
-                $player->sendMessage($this->getConfig()->get("Message"));
+                        for ($i = 0; $i < SignText::LINE_COUNT; $i++) {
+                            $player->sendMessage($this->getConfig()->get("Message"));
+                            $shopSignText = new SignText([
+							$sign[0],
+							$sign[1],
+							$sign[2],
+							$sign[3]
+							]);
+							$event->setNewText($shopSignText);
                 $time = date("D d/m/Y H:i:s(A)");
                     $this->history->set($time . ' : ' . $name, $line);
                     $this->history->save();
@@ -104,7 +136,7 @@ class Main extends PluginBase implements Listener{
         if(in_array($cmd, $this->getBlockedCmd())) {
             foreach ($this->getDomain() as $d) {
                 if (stripos($m, $d) !== false) {
-                    $event->setCancelled(true);
+                    $event->cancel();
                     $player->sendMessage($this->getConfig()->get("Message"));
                     $time = date("D d/m/Y H:i:s(A)");
                     $this->history->set($time . ' : ' . $name, $m);
@@ -210,8 +242,7 @@ class Main extends PluginBase implements Listener{
     $player->sendMessage("- " . $domain);
     return true;
     }
-
-    public function getSignLines()
+	public function getSignLines()
     {
     return (array) $this->getConfig()->get('lines');
     }
