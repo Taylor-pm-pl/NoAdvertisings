@@ -1,6 +1,6 @@
 ---
 name: NoAdvertisings
-version: 0.0.2
+version: 0.0.4
 api:
 - 4.0.0
 main: YTBJero\NoAdvertisings\Main
