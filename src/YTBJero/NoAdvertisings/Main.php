@@ -161,30 +161,26 @@ class Main extends PluginBase implements Listener{
                 return false;
             }
                     if (isset($args[0])) {
-                        switch ($args[0]) {
-                            case "add":
-                                if(isset($args[1])){
-                                    return $this->addDomain($sender, $args[1]);
-                                } else{
-                                    $sender->sendMessage("/noadvertisings add <domain>.");
-                                    return false;
-                                }
-                                break;
-                            case "remove":
-                                if(isset($args[1])){
-                                    return $this->removeDomain($sender, $args[1]);
-                                }
-                                else{
-                                    $sender->sendMessage("/noadvertisings remove <domain>.");
-                                    return false;
-                                }
-                                break;
-                            case "list":
-                                return $this->listDomain($sender);
-                                break;
+						if($args[0] == "add"){
+							if(isset($args[1])){
+								return $this->addDomain($sender, $args[1]);
+                            } else{
+                                $sender->sendMessage("/noadvertisings add <domain>.");
+                                return false;
+                            }
+						}
+                        if($args[0] == "remove"){
+							if(isset($args[1])){
+								return $this->removeDomain($sender, $args[1]);
+                            } else{
+                                $sender->sendMessage("/noadvertisings remove <domain>.");
+                                return false;
+                            }
                         }
-                    }
-                    else{
+                        if($args[0] == "list"){
+							return $this->listDomain($sender);
+                        }
+                    } else{
                         $sender->sendMessage("/noadvertisings <add/remove/list>");
                         return false;
                     }
