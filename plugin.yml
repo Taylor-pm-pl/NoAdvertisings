@@ -6,7 +6,6 @@ api:
 main: YTBJero\NoAdvertisings\Main
 author: YTBJero
 website: github.com/JeroGamingYT
-
 commands:
   noadvertisings:
     aliases:
