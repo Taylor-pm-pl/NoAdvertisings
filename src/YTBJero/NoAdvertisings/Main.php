@@ -104,10 +104,10 @@ class Main extends PluginBase implements Listener{
                         for ($i = 0; $i < SignText::LINE_COUNT; $i++) {
                             $player->sendMessage($this->getConfig()->get("Message"));
                             $shopSignText = new SignText([
-							$sign[0],
-							$sign[1],
-							$sign[2],
-							$sign[3]
+							isset($sign[0]) ? $sign[0] : '',
+							isset($sign[1]) ? $sign[1] : '',
+							isset($sign[2]) ? $sign[2] : '',
+							isset($sign[3]) ? $sign[3] : ''
 							]);
 							$event->setNewText($shopSignText);
                 $time = date("D d/m/Y H:i:s(A)");
