@@ -1,13 +1,18 @@
-[![](https://poggit.pmmp.io/shield.state/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings) [![](https://poggit.pmmp.io/shield.api/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings) [![](https://poggit.pmmp.io/shield.dl.total/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings) [![](https://poggit.pmmp.io/shield.dl/NoAdvertisings)](https://poggit.pmmp.io/p/NoAdvertisings)
-<div align="center">
-<h1>NoAdvertisings| v0.0.3<h1>
-<p>Block ads for other servers.</p>
-</div>
-  
-## Features
+# CustomBow
+
+<a href="https://poggit.pmmp.io/p/NoAdvertisings"><img src="https://poggit.pmmp.io/shield.dl.total/NoAdvertisings"></a>
+[![Discord](https://img.shields.io/discord/869130615851745281.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/YYquESwF)
+
+**NOTICE:** This plugin branch is for PocketMine-MP 4.
+
+Block server ads.
+Block server address ads when chatting, using commands, using sign.
+With easy-to-understand configuration.
+
+# Features
 - Block server ads.
-- Easy to setup.
 - Block server address ads when chatting, using commands, using sign.
+- Easy setup.
 
 ## All NoAdvertisings Commands:
 
@@ -17,56 +22,16 @@
 - Aliases:
   - /na
   - /noads
-
-## 📃  Permissions:
-
 - You can use permission `noadvertisings.blocked` for command /noadvertisings
-## Configs
- ```
- ---
-# Main config for NoAdvertisings
-# Message when players advertise
-Message: "Please don't ads."
-# Messages when adding domain
-Domain-exists: "That domain already exist!."
-Domain-added-successfully: "Successfully added {domain} into config."
-# Messages when removing domain
-Domain-not-exists: "That domain not exist!."
-Domain-removed-successfully: "Successfully removed {domain} from config."
-# The domains that allowed to use
-allowed.domain:
-  - "youripserver.net"
-  - "yourip.net"
-# Blocked domain names
-domain:
-  - ".net"
-  - ".com"
-  - ".tk"
-  - ".ddns.net"
-# Lines that will change if player advertise on sign
-lines:
-  - '============='
-  - 'No Advertising!'
-  - '============='
-  - ''
-# The command that will protected from advertising
-blocked.cmd:
-  - "/me"
-  - "/tell"
-  - "/w"
-...
- ```
-## History
- ```
----
-#This is where the system will save the ads player history.
-'Wed 18/08/2021 03:57:24(AM) : Console': example.net.
-'Wed 18/08/2021 03:57:31(AM) : Console': play.example.org
-...
- ```
-## Project Infomation
 
-| Plugin Version | Pocketmine API | PHP Version | Plugin Status |
-|---|---|---|---|
-| 0.0.3 | 3.x.x | 7.4 | Completed |
- 
+# How to Install
+
+1. Download the latest version
+2. Place the `NoAdvertisings.phar` file into the `plugins` folder.
+3. Restart the server.
+4. Done!
+
+# Additional Notes
+
+- If you found bugs or want to give suggestions, please visit <a href="https://github.com/Eric-pm-pl/NoAdvertisings/issues">here</a> or join our Discord server.
+- We accept all contributions! If you want to contribute, please make a pull request in <a href="https://github.com/Eric-pm-pl/NoAdvertisings/pulls">here</a>.
