@@ -211,12 +211,6 @@ class Main extends PluginBase implements Listener{
         return $allowed;
     }
 
-    /**
-     * @param Player $player
-     * @param $name
-     * @return bool
-     * @throws \JsonException
-     */
     public function addDomain(Player $player, $name)
     {
     $domain = $this->getDomain();
@@ -233,12 +227,6 @@ class Main extends PluginBase implements Listener{
     return true;
     }
 
-    /**
-     * @param Player $player
-     * @param $name
-     * @return bool
-     * @throws \JsonException
-     */
     public function removeDomain(Player $player, $name){
         $domain = $this->getDomain();
         $key = array_search($name, $domain);
