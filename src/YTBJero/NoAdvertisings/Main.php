@@ -42,9 +42,6 @@ class Main extends PluginBase implements Listener{
         $this->getServer()->getAsyncPool()->submitTask(new CheckUpdateTask($this->getDescription()->getName(), $this->getDescription()->getVersion()));
     }
 
-    /**
-     * @return void
-     */
     private function checkConfigUpdate(): void{
         $updateconfig = false;
 
