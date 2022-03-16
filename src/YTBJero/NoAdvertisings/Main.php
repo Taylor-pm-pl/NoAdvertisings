@@ -15,10 +15,12 @@ use pocketmine\utils\Config;
 use pocketmine\command\{Command, CommandSender};
 use pocketmine\block\utils\SignText;
 use pocketmine\block\WallSign;
+use function filter_var;
+
 class Main extends PluginBase implements Listener{
 
     public $configversion = "0.0.4";
-    
+    /** @var Config $history */
     public $history;
 
     public function onEnable(): void
@@ -32,11 +34,17 @@ class Main extends PluginBase implements Listener{
         $this->checkConfigUpdate();
     }
 
+    /**
+     * @param bool $isRetry
+     */
     public function checkUpdate(bool $isRetry = false): void 
     {
         $this->getServer()->getAsyncPool()->submitTask(new CheckUpdateTask($this->getDescription()->getName(), $this->getDescription()->getVersion()));
     }
 
+    /**
+     * @return void
+     */
     private function checkConfigUpdate(): void{
         $updateconfig = false;
 
@@ -71,10 +79,10 @@ class Main extends PluginBase implements Listener{
             }
         }
         foreach($domain as $d){
-            if((stripos($msg, $d) !== false) || (preg_match("([a-zA-Z0-9]+ *+[(\.|,)]+ *+[^\s]{2,}|\.[a-zA-Z0-9]+\.[^\s]{2,})", $msg))){
-                        $event->cancel();
-     $player->sendMessage($this->getConfig()->get("Message"));
-     $time = date("D d/m/Y H:i:s(A)");
+            if((stripos($msg, $d) !== false) || filter_var($msg, FILTER_VALIDATE_IP) || (preg_match("([a-zA-Z0-9]+ *+[(\.|,)]+ *+[^\s]{2,}|\.[a-zA-Z0-9]+\.[^\s]{2,})", $msg))){
+                    $event->cancel();
+                    $player->sendMessage($this->getConfig()->get("Message"));
+                    $time = date("D d/m/Y H:i:s(A)");
                     $this->history->set($time . ' : ' . $name, $msg);
                     $this->history->save();
                        
@@ -100,7 +108,7 @@ class Main extends PluginBase implements Listener{
                     }
                 }
                 foreach($this->getDomain() as $d){
-                    if(stripos($line, $d) !== false) {
+                    if(stripos($line, $d) !== false || filter_var($line, FILTER_VALIDATE_IP)) {
                         for ($i = 0; $i < SignText::LINE_COUNT; $i++) {
                             $player->sendMessage($this->getConfig()->get("Message"));
                             $shopSignText = new SignText([
@@ -135,7 +143,7 @@ class Main extends PluginBase implements Listener{
         }
         if(in_array($cmd, $this->getBlockedCmd())) {
             foreach ($this->getDomain() as $d) {
-                if (stripos($m, $d) !== false) {
+                if (stripos($m, $d) !== false  || filter_var($m, FILTER_VALIDATE_IP)) {
                     $event->cancel();
                     $player->sendMessage($this->getConfig()->get("Message"));
                     $time = date("D d/m/Y H:i:s(A)");
@@ -188,18 +196,30 @@ class Main extends PluginBase implements Listener{
                 return true;
         }
 
+    /**
+     * @return array
+     */
     public function getDomain()
     {
     $domain = (array) $this->getConfig()->get("domain");
     return $domain;
-    } 
+    }
 
+    /**
+     * @return array
+     */
     public function getAllowedDomain()
     {
         $allowed = (array) $this->getConfig()->get("allowed.domain");
         return $allowed;
     }
 
+    /**
+     * @param Player $player
+     * @param $name
+     * @return bool
+     * @throws \JsonException
+     */
     public function addDomain(Player $player, $name)
     {
     $domain = $this->getDomain();
@@ -216,6 +236,12 @@ class Main extends PluginBase implements Listener{
     return true;
     }
 
+    /**
+     * @param Player $player
+     * @param $name
+     * @return bool
+     * @throws \JsonException
+     */
     public function removeDomain(Player $player, $name){
         $domain = $this->getDomain();
         $key = array_search($name, $domain);
@@ -232,17 +258,28 @@ class Main extends PluginBase implements Listener{
         return true;
     }
 
+    /**
+     * @param Player $player
+     * @return bool
+     */
     public function listDomain(Player $player){
     $domain = implode("\n" ."- ", $this->getDomain());
     $player->sendMessage("Available domain:");
     $player->sendMessage("- " . $domain);
     return true;
     }
+
+    /**
+     * @return array
+     */
 	public function getSignLines()
     {
     return (array) $this->getConfig()->get('lines');
     }
 
+    /**
+     * @return array
+     */
     public function getBlockedCmd()
     {
     return (array) $this->getConfig()->get('blocked.cmd');
