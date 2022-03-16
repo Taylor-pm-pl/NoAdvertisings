@@ -1,4 +1,4 @@
-# CustomBow
+# NoAdvertisings
 
 <a href="https://poggit.pmmp.io/p/NoAdvertisings"><img src="https://poggit.pmmp.io/shield.dl.total/NoAdvertisings"></a>
 [![Discord](https://img.shields.io/discord/869130615851745281.svg?label=&logo=discord&logoColor=ffffff&color=7389D8&labelColor=6A7EC2)](https://discord.gg/YYquESwF)
