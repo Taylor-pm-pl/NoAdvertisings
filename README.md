@@ -33,5 +33,5 @@ With easy-to-understand configuration.
 
 # Additional Notes
 
-- If you found bugs or want to give suggestions, please visit <a href="https://github.com/Eric-pm-pl/NoAdvertisings/issues">here</a> or join our Discord server.
-- We accept all contributions! If you want to contribute, please make a pull request in <a href="https://github.com/Eric-pm-pl/NoAdvertisings/pulls">here</a>.
+- If you found bugs or want to give suggestions, please visit <a href="https://github.com/David-pm-pl/NoAdvertisings/issues">here</a> or join our Discord server.
+- We accept all contributions! If you want to contribute, please make a pull request in <a href="https://github.com/David-pm-pl/NoAdvertisings/pulls">here</a>.
