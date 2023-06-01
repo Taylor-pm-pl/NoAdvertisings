@@ -1,7 +1,8 @@
 --- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/JeroGamingYT/NoAdvertisings
 build-by-default: true
 branches:
-- stable
+- pm4
+- pm5
 projects:
   NoAdvertisings:
     path: ""
