@@ -1,7 +1,7 @@
 ---
 name: NoAdvertisings
-version: 0.0.6
-api: 4.0.0
+version: 0.0.7
+api: 5.0.0
 main: YTBJero\NoAdvertisings\Main
 author: YTBJero
 website: github.com/JeroGamingYT
